@@ -11,6 +11,13 @@
 * JDK 7+
 
 #### Instructions:
+
+###### Build Automatically
+* Clone this repo and change **cd** into the root directory of **codeu-starter-project-dart**
+* > chmod u+x build.sh
+* > ./build.sh
+
+###### Build Manually
 * Clone this repo and change **cd** into the root directory of **codeu-starter-project-dart**
 * Run **brew info dart**, get the path of dart SDK, substitute the path in line 35 of pom.xml: **<dart.sdk>/usr/local/opt/dart/libexec</dart.sdk>**
 * > mvn clean
