@@ -14,9 +14,27 @@
  * limitations under the License.
  */
 import 'dart:html';
+
+String getParameterUsername() {
+  // Get ?user=XYZ parameter value
+  var uri = Uri.parse(window.location.toString());
+  var parameterUsername = null;
+  uri.queryParameters.forEach((key, val) {
+     if (key == 'user') {
+       parameterUsername = val;
+     }
+  });
+
+  // URL must include ?user=XYZ parameter. If not, redirect to homepage.
+  if (parameterUsername == null) {
+    window.location.replace('/');
+  }
+  return parameterUsername;
+}
+
 /** Sets the page title based on the URL parameter username. */
 void setPageTitle(String parameterUsername) {
-  querySelector('#page-title').text = 'test'; //parameterUsername
+  querySelector('#page-title').text = 'tmp title'; //parameterUsername
   document.title = parameterUsername + ' - User Page'; //TODO
 }
 
@@ -24,7 +42,7 @@ void setPageTitle(String parameterUsername) {
  * Shows the message form if the user is logged in and viewing their own page.
  */
 void showMessageFormIfViewingSelf() {
-  querySelector('message-form').classes.remove('hidden');
+  querySelector('#message-form').classes.remove('hidden');
   //
   // fetch('/login-status')
   //     .then((response) => {
@@ -39,9 +57,9 @@ void showMessageFormIfViewingSelf() {
 
 /** Fetches messages and add them to the page. */
 void fetchMessages() {
-  final messages = ['This', 'is', 'loaded', 'text.'];
-  final messagesContainer = querySelector('message-container');
-  String defaultText = '<p>This user has no posts yet.</p>';
+  final messages = ['test message 1', 'test message 2', 'test message 3', 'test message 4'];
+  final messagesContainer = querySelector('#message-container');
+  String defaultText = 'This user has no posts yet.';
   messagesContainer.text = messages.length == 0 ? defaultText : '';
   for (var message in messages) {
     var messageDiv = buildMessageDiv(message);
@@ -82,7 +100,7 @@ DivElement buildMessageDiv(String message) {
 
   DivElement bodyDiv = new DivElement();
   bodyDiv.classes.add('message-body');
-  bodyDiv.text = 'tmp text'; //message.text;
+  bodyDiv.text = message; //message.text;
 
   DivElement messageDiv = new DivElement();
   messageDiv.classes.add('message-div');
@@ -94,22 +112,7 @@ DivElement buildMessageDiv(String message) {
 
 /** Fetches data and populates the UI of the page. */
 void main() {
-  // Get ?user=XYZ parameter value
-  var uri = Uri.parse(window.location.toString());
-  var parameterUsername = null;
-  uri.queryParameters.forEach((key, val) {
-     if (key == 'user') {
-       parameterUsername = val;
-     }
-  });
-
-  // URL must include ?user=XYZ parameter. If not, redirect to homepage.
-  if (parameterUsername == null) {
-    window.location.replace('/');
-  }
-
-
-  setPageTitle(parameterUsername);
+  setPageTitle(getParameterUsername());
   showMessageFormIfViewingSelf();
   fetchMessages();
 }

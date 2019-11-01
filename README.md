@@ -16,6 +16,7 @@
 * > mvn clean
 * > mvn dart:dart2js
 * > dart2js -o target/dart/user-page-loader.dart.js src/main/dart/user-page-loader.dart
+* > dart2js -o target/dart/navigation-loader.dart.js src/main/dart/navigation-loader.dart
 * > mvn appengine:devserver
 
 #### TODO:
@@ -25,3 +26,4 @@
 * Hot reload
 * Write python/bash script to automate the build process
 * Fetch login status and display navbar & message form accordingly
+* Fix error message while running devserver
