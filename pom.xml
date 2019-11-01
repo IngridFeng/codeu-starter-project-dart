@@ -93,6 +93,7 @@ limitations under the License.
       <plugin>
         <groupId>com.github.dzwicker.dart</groupId>
         <artifactId>dart-maven-plugin</artifactId>
+        <version>3.0.8</version>
         <configuration>
           <checkedMode>true</checkedMode>
           <dartSdk>${dart.sdk}</dartSdk>

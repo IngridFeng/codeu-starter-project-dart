@@ -15,8 +15,8 @@
  */
 
 // Get ?user=XYZ parameter value
-const urlParams = new URLSearchParams(window.location.search);
-const parameterUsername = urlParams.get('user');
+var urlParams = new URLSearchParams(window.location.search);
+var parameterUsername = urlParams.get('user');
 
 // URL must include ?user=XYZ parameter. If not, redirect to homepage.
 if (!parameterUsername) {
@@ -24,7 +24,7 @@ if (!parameterUsername) {
 }
 
 /** Sets the page title based on the URL parameter username. */
-function setPageTitle() {
+void setPageTitle() {
   document.getElementById('page-title').innerText = parameterUsername;
   document.title = parameterUsername + ' - User Page';
 }
@@ -32,7 +32,7 @@ function setPageTitle() {
 /**
  * Shows the message form if the user is logged in and viewing their own page.
  */
-function showMessageFormIfViewingSelf() {
+showMessageFormIfViewingSelf() {
   fetch('/login-status')
       .then((response) => {
         return response.json();
@@ -47,7 +47,7 @@ function showMessageFormIfViewingSelf() {
 }
 
 /** Fetches messages and add them to the page. */
-function fetchMessages() {
+fetchMessages() {
   const url = '/messages?user=' + parameterUsername;
   fetch(url)
       .then((response) => {
@@ -72,7 +72,7 @@ function fetchMessages() {
  * @param {Message} message
  * @return {Element}
  */
-function buildMessageDiv(message) {
+buildMessageDiv(message) {
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('message-header');
   headerDiv.appendChild(document.createTextNode(
@@ -91,7 +91,7 @@ function buildMessageDiv(message) {
 }
 
 /** Fetches data and populates the UI of the page. */
-function buildUI() {
+void main() {
   setPageTitle();
   showMessageFormIfViewingSelf();
   fetchMessages();
