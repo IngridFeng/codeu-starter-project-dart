@@ -24,3 +24,4 @@
 * Learn about AngularDart
 * Hot reload
 * Write python/bash script to automate the build process
+* Fetch login status and display navbar & message form accordingly

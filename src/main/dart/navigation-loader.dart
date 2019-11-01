@@ -20,52 +20,59 @@
  */
 import 'dart:html';
 
-//
-// function addLoginOrLogoutLinkToNavigation() {
-//   const navigationElement = document.getElementById('navigation');
-//   if (!navigationElement) {
-//     console.warn('Navigation element not found!');
-//     return;
-//   }
-//
-//   fetch('/login-status')
-//       .then((response) => {
-//         return response.json();
-//       })
-//       .then((loginStatus) => {
-//         if (loginStatus.isLoggedIn) {
-//           navigationElement.appendChild(createListItem(createLink(
-//               '/user-page.html?user=' + loginStatus.username, 'Your Page')));
-//
-//           navigationElement.appendChild(
-//               createListItem(createLink('/logout', 'Logout')));
-//         } else {
-//           navigationElement.appendChild(
-//               createListItem(createLink('/login', 'Login')));
-//         }
-//       });
-// }
-//
-// /**
-//  * Creates an li element.
-//  * @param {Element} childElement
-//  * @return {Element} li element
-//  */
-// function createListItem(childElement) {
-//   const listItemElement = document.createElement('li');
-//   listItemElement.appendChild(childElement);
-//   return listItemElement;
-// }
-//
-// /**
-//  * Creates an anchor element.
-//  * @param {string} url
-//  * @param {string} text
-//  * @return {Element} Anchor element
-//  */
-// function createLink(url, text) {
-//   const linkElement = document.createElement('a');
-//   linkElement.appendChild(document.createTextNode(text));
-//   linkElement.href = url;
-//   return linkElement;
-// }
+
+void addLoginOrLogoutLinkToNavigation() {
+  var navigationElement = querySelector('#navigation');
+  if (navigationElement == null) {
+    window.console.warn('Navigation element not found!');
+    return;
+  }
+  navigationElement.children.add(createListItem(createLink(
+      '/user-page.html?user=' + 'tmp user name', 'Your Page')));
+
+
+  // fetch('/login-status')
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((loginStatus) => {
+  //       if (loginStatus.isLoggedIn) {
+  //         navigationElement.appendChild(createListItem(createLink(
+  //             '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+  //
+  //         navigationElement.appendChild(
+  //             createListItem(createLink('/logout', 'Logout')));
+  //       } else {
+  //         navigationElement.appendChild(
+  //             createListItem(createLink('/login', 'Login')));
+  //       }
+  //     });
+}
+
+/**
+ * Creates an li element.
+ * @param {Element} childElement
+ * @return {Element} li element
+ */
+LIElement createListItem(Element childElement) {
+  final listItemElement = new Element.li();
+  listItemElement.children.add(childElement);
+  return listItemElement;
+}
+
+/**
+ * Creates an anchor element.
+ * @param {string} url
+ * @param {string} text
+ * @return {Element} Anchor element
+ */
+Element createLink(String url, String text) {
+  var linkElement = new AnchorElement()
+    ..href = url
+    ..text = text;
+  return linkElement;
+}
+
+void main() {
+  addLoginOrLogoutLinkToNavigation();
+}
